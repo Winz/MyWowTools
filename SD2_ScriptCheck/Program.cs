@@ -36,6 +36,8 @@ namespace SD2_ScriptCheck
             foreach (string file in files)
             {
                 String Code = File.ReadAllText(file);
+                Code = Regex.Replace(Code, @"\/\*.*?\*\/", "", RegexOptions.Singleline);
+
                 var loaderCallMatches = Regex.Matches(Code, @"\s+void\s+AddSC_([\w\d]+)\s*\(",
                     RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
@@ -63,9 +65,10 @@ namespace SD2_ScriptCheck
 
             /*********** EXTERNED LOADERS ***********/
 
-            String ScriptLoader = File.ReadAllText("system/ScriptLoader.cpp");
+            String FullLoaderCode = File.ReadAllText("system/ScriptLoader.cpp");
+            FullLoaderCode = Regex.Replace(FullLoaderCode, @"\/\*.*?\*\/", "", RegexOptions.Singleline);
 
-            var externs = Regex.Matches(ScriptLoader, @"^\s*?extern\s+void\s+AddSC_([\w\d]+)\s*\(",
+            var externs = Regex.Matches(FullLoaderCode, @"^\s*?extern\s+void\s+AddSC_([\w\d]+)\s*\(",
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Multiline);
 
             foreach (var externMatch in externs)
@@ -80,7 +83,7 @@ namespace SD2_ScriptCheck
                     else
                     {
                         ++errors;
-                        Console.WriteLine("Loader '{0}' externed multiple", loaderName);
+                        Console.WriteLine("Loader '{0}' externed multiple times", loaderName);
                     }
                 }
                 else
@@ -95,7 +98,7 @@ namespace SD2_ScriptCheck
 
             /*********** CALLED LOADERS ***********/
 
-            Match LoaderCodeMatch = Regex.Match(ScriptLoader, @"void AddScripts\(\)\s+{(.+)}",
+            Match LoaderCodeMatch = Regex.Match(FullLoaderCode, @"void AddScripts\(\)\s+{(.+)}",
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Singleline);
 
             if (!LoaderCodeMatch.Success)
