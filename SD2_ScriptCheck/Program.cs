@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 namespace SD2_ScriptCheck
 {
@@ -21,9 +22,20 @@ namespace SD2_ScriptCheck
 
         static void Main(string[] args)
         {
+            var ver = Assembly.GetExecutingAssembly().GetName().Version;
+            Console.WriteLine("ScriptDev2 Script Checker v{0}.{1}.{2}", ver.Major, ver.Minor, ver.Build);
+            Console.WriteLine();
+
             if (!File.Exists("system/ScriptLoader.cpp"))
             {
                 Console.WriteLine("<system/ScriptLoader.cpp> not found");
+                Console.ReadLine();
+                return;
+            }
+
+            if (!Directory.Exists("scripts"))
+            {
+                Console.WriteLine("<scripts> directory not found");
                 Console.ReadLine();
                 return;
             }
