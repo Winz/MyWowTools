@@ -18,19 +18,9 @@ namespace SD2_ScriptCheck
             string[] files = Directory.GetFiles("scripts", "*.cpp", SearchOption.AllDirectories);
             foreach (string file in files)
             {
-                String Code = PrepareScriptFile(File.ReadAllText(file));
+                String Code = CppCode.Clean(File.ReadAllText(file));
                 ScriptFiles.Add(file, Code);
             }
-        }
-
-        static string PrepareScriptFile(string input)
-        {
-            /* Block comments */
-            input = Regex.Replace(input, @"\/\*.*?\*\/", "", RegexOptions.Singleline);
-            // Single line comments
-            input = Regex.Replace(input, @"\/\/.+?$", "", RegexOptions.Multiline);
-
-            return input;
         }
     }
 }

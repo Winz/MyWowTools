@@ -44,8 +44,6 @@ namespace SD2_ScriptCheck
 
                 // Check ScriptLoader.cpp and loaders consistency
                 CheckScriptLoader();
-
-                //
             }
             catch (Exception ex)
             {

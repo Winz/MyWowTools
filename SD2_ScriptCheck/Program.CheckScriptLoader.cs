@@ -55,7 +55,7 @@ namespace SD2_ScriptCheck
 
             // Load Externed Loaders
 
-            String FullLoaderCode = PrepareScriptFile(File.ReadAllText("system/ScriptLoader.cpp"));
+            String FullLoaderCode = CppCode.Clean(File.ReadAllText("system/ScriptLoader.cpp"));
 
             var externs = Regex.Matches(FullLoaderCode, @"^\s*?extern\s+void\s+AddSC_([\w\d]+)\s*\(",
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Multiline);
@@ -87,16 +87,16 @@ namespace SD2_ScriptCheck
             
             // Load Called Loaders
 
-            Match LoaderCodeMatch = Regex.Match(FullLoaderCode, @"void AddScripts\(\)\s+{(.+)}",
-                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Singleline);
+            int function = FullLoaderCode.IndexOf("void AddScripts");
 
-            if (!LoaderCodeMatch.Success)
+            if (function == -1)
             {
                 Console.WriteLine("Error: Failed to find 'void AddScripts' in ScriptLoader.cpp");
                 Console.ReadLine();
                 return;
             }
-            string LoaderCode = LoaderCodeMatch.Groups[1].Value;
+
+            string LoaderCode = CppCode.ExtractBlock(FullLoaderCode, function);
 
             var calls = Regex.Matches(LoaderCode, @"^\s*?AddSC_([\w\d]+)\s*\(",
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Multiline);
