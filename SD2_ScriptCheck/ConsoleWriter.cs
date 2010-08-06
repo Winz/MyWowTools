@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -63,7 +62,7 @@ namespace SD2_ScriptCheck
             if (text.StartsWith("error", StringComparison.InvariantCultureIgnoreCase))
                 Console.ForegroundColor = ConsoleColor.Red;
             else if (text.StartsWith("warning", StringComparison.InvariantCultureIgnoreCase))
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.ForegroundColor = ConsoleColor.Yellow;
             else
                 Console.ForegroundColor = ConsoleColor.Gray;
 

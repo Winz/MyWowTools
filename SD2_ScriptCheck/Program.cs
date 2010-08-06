@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Reflection;
 
 namespace SD2_ScriptCheck
@@ -11,6 +7,7 @@ namespace SD2_ScriptCheck
     static partial class Program
     {
         static int Errors = 0;
+        static int Warnings = 0;
 
         static void Main(string[] args)
         {
@@ -44,6 +41,9 @@ namespace SD2_ScriptCheck
 
                 // Check ScriptLoader.cpp and loaders consistency
                 CheckScriptLoader();
+
+                // Check clearing gossip menus on add new items or sending menu again
+                CheckClearGossipMenu();
             }
             catch (Exception ex)
             {
@@ -53,6 +53,7 @@ namespace SD2_ScriptCheck
             /*********** SUMMARY ***********/
 
             Console.WriteLine();
+            Console.WriteLine("Total Warnings: {0}", Warnings);
             Console.WriteLine("Total Errors: {0}", Errors);
 
             ConsoleWriter.Instance.Close();

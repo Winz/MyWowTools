@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="ConsoleWriter.cs" />
     <Compile Include="CppCode.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Program.CheckClearGossipMenu.cs" />
     <Compile Include="Program.CheckScriptLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Program.ScriptFileLoader.cs" />
