@@ -17,12 +17,19 @@ namespace DbcExtractor
         public uint skillLine2;
         public uint petFoodMask;
         public int petType;
-        public int category;
+        private int category;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = Constants.TotalLocales)]
         [DBCString(true)]
         public uint[] name;
         private uint nameflags;
         [DBCString(false)]
         public uint IconName;
+
+        public bool FixRow()
+        {
+            Util.FixIcon(GetType(), IconName);
+
+            return true;
+        }
     }
 }
