@@ -4,7 +4,7 @@ namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential)]
     [TableName("wmoareatable")]
-    struct WMOAreaTableEntry
+    struct WMOAreaTable
     {
         [PrimaryKey]
         public uint Id;

@@ -4,7 +4,7 @@ namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential)]
     [TableName("achievement")]
-    struct AchievementEntry
+    struct Achievement
     {
         [PrimaryKey]
         public uint Id;

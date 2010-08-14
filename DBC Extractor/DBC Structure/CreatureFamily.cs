@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace DbcExtractor
 {
@@ -13,8 +12,8 @@ namespace DbcExtractor
         private uint minScaleLevel;
         private float maxScale;
         private uint maxScaleLevel;
-        public uint skillLine1;
-        public uint skillLine2;
+        public uint skill;
+        private uint skill_level;
         public uint petFoodMask;
         public int petType;
         private int category;

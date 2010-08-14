@@ -3,19 +3,17 @@
 namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential)]
-    [TableName("glyphproperties")]
-    struct GlyphProperties
+    [TableName("spell_icon")]
+    struct SpellIcon
     {
         [PrimaryKey]
         public uint Id;
-        public uint spellid;
-        public uint typeflags;
-        public uint iconid;
+        [DBCString(false)]
+        public uint Icon;
 
         public bool FixRow()
         {
-            if (spellid == 0)
-                return false;
+            Util.FixIcon(GetType(), Icon);
 
             return true;
         }

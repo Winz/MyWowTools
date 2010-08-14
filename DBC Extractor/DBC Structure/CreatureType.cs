@@ -3,8 +3,8 @@
 namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential)]
-    [TableName("pet_food")]
-    struct ItemPetFood
+    [TableName("creature_type")]
+    struct CreatureType
     {
         [PrimaryKey]
         public uint Id;
@@ -12,5 +12,6 @@ namespace DbcExtractor
         [DBCString(true)]
         public uint[] name;
         private uint nameflags;
+        public uint critter;
     }
 }
