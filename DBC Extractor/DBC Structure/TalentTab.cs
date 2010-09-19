@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential)]
-    [TableName("talenttab")]
+    [TableName("talent_tab")]
     struct TalentTab
     {
         [PrimaryKey]

@@ -53,7 +53,7 @@ namespace DbcExtractor
         #endregion
 
         private List<object> Entries = new List<object>();
-        private string Filename;
+        public string Filename { get; private set; }
         private Type EntryType;
 
         public DBC(string fn)

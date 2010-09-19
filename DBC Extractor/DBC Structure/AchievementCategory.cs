@@ -3,18 +3,19 @@
 namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential)]
-    [TableName("achievementcategory")]
+    [TableName("achievement_category")]
     struct AchievementCategory
     {
         [PrimaryKey]
         public uint Id;
         [Index("category")]
-        public int parentCategory;
+        public int parent;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = Constants.TotalLocales)]
         [DBCString(true)]
         public uint[] name;
 
         private uint _nameflags;
-        private uint _order;
+
+        public uint order;
     }
 }

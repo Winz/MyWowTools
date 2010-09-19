@@ -48,39 +48,41 @@ namespace DbcExtractor
             if (ExtractAs != Locale.Default)
                 filename += "_" + ExtractAs.ToString();
 
-            FileStream FS = new FileStream("DBC_" + filename + ".sql", FileMode.Create);
-
             List<DBC> DBCs = new List<DBC>
             {
-                DBC.Open<AreaTable>                 ("AreaTable.dbc"),
-                DBC.Open<Achievement>               ("Achievement.dbc"),
-                DBC.Open<AchievementCategory>       ("Achievement_Category.dbc"),
-                DBC.Open<AchievementCriteria>       ("Achievement_Criteria.dbc"),
-                DBC.Open<ChrClasses>                ("ChrClasses.dbc"),
+                //DBC.Open<AreaTable>                 ("AreaTable.dbc"),
+                //DBC.Open<Achievement>               ("Achievement.dbc"),
+                //DBC.Open<AchievementCategory>       ("Achievement_Category.dbc"),
+                //DBC.Open<AchievementCriteria>       ("Achievement_Criteria.dbc"),
+                //DBC.Open<ChrClasses>                ("ChrClasses.dbc"),
                 DBC.Open<ChrRaces>                  ("ChrRaces.dbc"),
-                DBC.Open<CreatureFamily>            ("CreatureFamily.dbc"),
-                DBC.Open<CreatureType>              ("CreatureType.dbc"),
-                DBC.Open<GlyphProperties>           ("GlyphProperties.dbc"),
-                DBC.Open<ItemClass>                 ("ItemClass.dbc"),
-                DBC.Open<ItemPetFood>               ("ItemPetFood.dbc"),
-                DBC.Open<ItemSubClass>              ("ItemSubClass.dbc"),
-                DBC.Open<QuestInfo>                 ("QuestInfo.dbc"),
-                DBC.Open<QuestSort>                 ("QuestSort.dbc"),
-                DBC.Open<Resistances>               ("Resistances.dbc"),
-                DBC.Open<Spell>                     ("Spell.dbc"),
-                DBC.Open<SpellIcon>                 ("SpellIcon.dbc"),
-                DBC.Open<Talent>                    ("Talent.dbc"),
-                DBC.Open<TalentTab>                 ("TalentTab.dbc"),
-                DBC.Open<WMOAreaTable>              ("WMOAreaTable.dbc"),
+                //DBC.Open<CreatureFamily>            ("CreatureFamily.dbc"),
+                //DBC.Open<CreatureType>              ("CreatureType.dbc"),
+                //DBC.Open<Faction>                   ("Faction.dbc"),
+                //DBC.Open<GlyphProperties>           ("GlyphProperties.dbc"),
+                //DBC.Open<ItemClass>                 ("ItemClass.dbc"),
+                //DBC.Open<ItemPetFood>               ("ItemPetFood.dbc"),
+                //DBC.Open<ItemSubClass>              ("ItemSubClass.dbc"),
+                //DBC.Open<QuestInfo>                 ("QuestInfo.dbc"),
+                //DBC.Open<QuestSort>                 ("QuestSort.dbc"),
+                //DBC.Open<Resistances>               ("Resistances.dbc"),
+                //DBC.Open<SkillLine>                 ("SkillLine.dbc"),
+                //DBC.Open<Spell>                     ("Spell.dbc"),
+                //DBC.Open<SpellIcon>                 ("SpellIcon.dbc"),
+                //DBC.Open<Talent>                    ("Talent.dbc"),
+                //DBC.Open<TalentTab>                 ("TalentTab.dbc"),
+                //DBC.Open<WMOAreaTable>              ("WMOAreaTable.dbc"),
             };
 
             Console.WriteLine("Extracting...");
+
+            var Writer = new StreamWriter("DBC_" + filename + ".sql");
             foreach (DBC dbc in DBCs)
             {
-                byte[] Bytes = Encoding.UTF8.GetBytes(dbc.ToSQL(AsLocalized));
-                FS.Write(Bytes, 0, Bytes.Length);
+                Writer.Write(dbc.ToSQL(AsLocalized));
+                Console.WriteLine("DBC {0} Extracted.", Path.GetFileName(dbc.Filename));
             }
-            FS.Close();
+            Writer.Close();
         }
     }
 }

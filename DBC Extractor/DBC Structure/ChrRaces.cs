@@ -47,9 +47,10 @@ namespace DbcExtractor
             if (side == 3)
                 return false;
 
+            /* Screws the nameMale up
             string systemname = DBC.GetString(GetType(), this.nameSystem);
             if (!String.IsNullOrEmpty(systemname))
-                DBC.SetString(GetType(), this.nameSystem, systemname.ToLower());
+                DBC.SetString(GetType(), this.nameSystem, systemname.ToLower());*/
 
             return true;
         }
