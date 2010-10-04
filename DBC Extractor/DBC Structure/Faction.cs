@@ -4,17 +4,17 @@ using System.Runtime.InteropServices;
 namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential)]
-    [TableName("faction")]
+    [TableName("factions")]
     struct Faction
     {
         [PrimaryKey]
-        public uint Id;
-        public int listId;
+        public uint factionID;
+        public int reputationListID;
         
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
         private uint[] BaseStandingDatas;
 
-        public uint parent;
+        public uint team;
 
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
         private uint[] SpilloverDatas;
@@ -26,11 +26,15 @@ namespace DbcExtractor
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = Constants.TotalLocales)]
         [DBCString(true)]
         public uint[] description;
-        private uint descflags;
+
+        /// <summary>
+        /// WORKAROUND: reused descflags to fix queries.
+        /// </summary>
+        public uint side;
 
         public bool FixRow()
         {
-            if (listId < 0)
+            if (reputationListID < 0)
                 return false;
 
             string name_str = DBC.GetString(GetType(), name[0]);
@@ -40,6 +44,8 @@ namespace DbcExtractor
                 || name_str.IndexOf("do not use", StringComparison.InvariantCultureIgnoreCase) != -1
                 || name_str.StartsWith(" "))
                 return false;
+
+            side = 0;
 
             return true;
         }

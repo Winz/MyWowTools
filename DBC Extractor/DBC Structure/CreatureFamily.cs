@@ -3,7 +3,7 @@
 namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential)]
-    [TableName("pet_family")]
+    [TableName("pet_families")]
     struct CreatureFamily
     {
         [PrimaryKey]

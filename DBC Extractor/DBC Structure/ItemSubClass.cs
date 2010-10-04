@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential)]
-    [TableName("item_subclass")]
+    [TableName("item_subclasses")]
     struct ItemSubClass
     {
         [PrimaryKey]

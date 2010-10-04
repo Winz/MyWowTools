@@ -3,7 +3,7 @@
 namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential)]
-    [TableName("quest_info")]
+    [TableName("quest_infos")]
     struct QuestInfo
     {
         [PrimaryKey]

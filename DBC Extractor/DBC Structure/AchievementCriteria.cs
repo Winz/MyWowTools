@@ -3,7 +3,7 @@
 namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential)]
-    [TableName("achievement_criteria")]
+    [TableName("achievement_criterias")]
     struct AchievementCriteria
     {
         [PrimaryKey]

@@ -3,7 +3,7 @@
 namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential, Pack=1)]
-    [TableName("talent")]
+    [TableName("talents")]
     struct Talent
     {
         [PrimaryKey]
@@ -27,7 +27,7 @@ namespace DbcExtractor
         public bool FixRow()
         {
             rankCount = 0;
-            for (int i = 0; i < 9; ++i)
+            for (int i = 0; i < rank.Length; ++i)
             {
                 if (rank[i] != 0)
                     ++rankCount;

@@ -3,7 +3,7 @@
 namespace DbcExtractor
 {
     [StructLayout(LayoutKind.Sequential)]
-    [TableName("glyphproperties")]
+    [TableName("glyph_properties")]
     struct GlyphProperties
     {
         [PrimaryKey]

@@ -58,6 +58,7 @@
     <Compile Include="DBC Structure\ItemPetFood.cs" />
     <Compile Include="DBC Structure\GlyphProperties.cs" />
     <Compile Include="DBC Structure\ItemClass.cs" />
+    <Compile Include="DBC Structure\ItemSet.cs" />
     <Compile Include="DBC Structure\ItemSubClass.cs" />
     <Compile Include="DBC Structure\QuestInfo.cs" />
     <Compile Include="DBC Structure\QuestSort.cs" />
