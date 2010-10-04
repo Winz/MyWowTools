@@ -13,7 +13,14 @@ namespace DbcExtractor
     enum Locale
     {
         Default = 0,
-        ruRU = 8,
+        koKR    = 1,
+        frFR    = 2,
+        deDE    = 3,
+        zhCN    = 4,
+        zhTW    = 5,
+        esES    = 6,
+        esMX    = 7,
+        ruRU    = 8
     }
 
     enum Teams : uint
