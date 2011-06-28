@@ -11,35 +11,45 @@ namespace DbcExtractor
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Extract full DBC structure? (y/n)");
-            Boolean AsLocalized = Console.ReadLine() == "y" ? false : true;
-
-            Extract(AsLocalized, Locale.Default);
-
-            if (!AsLocalized)
+            try
             {
-                string orig_prefix = prefix;
+                Console.WriteLine("Extract full DBC structure? (y/n)");
+                Boolean AsLocalized = Console.ReadLine() == "y" ? false : true;
 
-                foreach (Locale loc in Constants.SupportedLocales)
+                Extract(AsLocalized, Locale.Default);
+
+                if (!AsLocalized)
                 {
-                    if (loc == Locale.Default)
-                        continue;
+                    string orig_prefix = prefix;
 
-                    string dir = Path.Combine(orig_prefix, loc.ToString());
-                    if (!Directory.Exists(dir))
-                        continue;
-
-                    Console.WriteLine("Directory {0} exists and may contain localized DBCs. Extract? (y/n)", dir);
-                    if (Console.ReadLine().Trim() == "y")
+                    foreach (Locale loc in Constants.SupportedLocales)
                     {
-                        prefix = dir;
-                        Extract(true, loc);
+                        if (loc == Locale.Default)
+                            continue;
+
+                        string dir = Path.Combine(orig_prefix, loc.ToString());
+                        if (!Directory.Exists(dir))
+                            continue;
+
+                        Console.WriteLine("Directory {0} exists and may contain localized DBCs. Extract? (y/n)", dir);
+                        if (Console.ReadLine().Trim() == "y")
+                        {
+                            prefix = dir;
+                            Extract(true, loc);
+                        }
                     }
                 }
-            }
 
-            Console.WriteLine("Done.");
-            Console.ReadLine();
+                Console.WriteLine("Done.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: " + ex);
+            }
+            finally
+            {
+                Console.ReadLine();
+            }
         }
 
         static void Extract(bool AsLocalized, Locale ExtractAs)
@@ -50,29 +60,33 @@ namespace DbcExtractor
 
             List<DBC> DBCs = new List<DBC>
             {
-                DBC.Open<AreaTable>                 ("AreaTable.dbc"),
-                DBC.Open<Achievement>               ("Achievement.dbc"),
-                DBC.Open<AchievementCategory>       ("Achievement_Category.dbc"),
-                DBC.Open<AchievementCriteria>       ("Achievement_Criteria.dbc"),
-                DBC.Open<ChrClasses>                ("ChrClasses.dbc"),
-                DBC.Open<ChrRaces>                  ("ChrRaces.dbc"),
-                DBC.Open<CreatureFamily>            ("CreatureFamily.dbc"),
-                DBC.Open<CreatureType>              ("CreatureType.dbc"),
-                DBC.Open<Faction>                   ("Faction.dbc"),
-                DBC.Open<GlyphProperties>           ("GlyphProperties.dbc"),
-                DBC.Open<ItemClass>                 ("ItemClass.dbc"),
-                DBC.Open<ItemPetFood>               ("ItemPetFood.dbc"),
-                DBC.Open<ItemSet>                   ("ItemSet.dbc"),
-                DBC.Open<ItemSubClass>              ("ItemSubClass.dbc"),
-                DBC.Open<QuestInfo>                 ("QuestInfo.dbc"),
-                DBC.Open<QuestSort>                 ("QuestSort.dbc"),
-                DBC.Open<Resistances>               ("Resistances.dbc"),
-                DBC.Open<SkillLine>                 ("SkillLine.dbc"),
-                DBC.Open<Spell>                     ("Spell.dbc"),
-                DBC.Open<SpellIcon>                 ("SpellIcon.dbc"),
-                DBC.Open<Talent>                    ("Talent.dbc"),
-                DBC.Open<TalentTab>                 ("TalentTab.dbc"),
-                DBC.Open<WMOAreaTable>              ("WMOAreaTable.dbc"),
+                //DBC.Open<AreaTable>                 ("AreaTable.dbc"),
+                //DBC.Open<Achievement>               ("Achievement.dbc"),
+                //DBC.Open<AchievementCategory>       ("Achievement_Category.dbc"),
+                //DBC.Open<AchievementCriteria>       ("Achievement_Criteria.dbc"),
+                //DBC.Open<CharTitles>                ("CharTitles.dbc"),
+                //DBC.Open<ChrClasses>                ("ChrClasses.dbc"),
+                //DBC.Open<ChrRaces>                  ("ChrRaces.dbc"),
+                //DBC.Open<CreatureFamily>            ("CreatureFamily.dbc"),
+                //DBC.Open<CreatureType>              ("CreatureType.dbc"),
+                //DBC.Open<Faction>                   ("Faction.dbc"),
+                //DBC.Open<GlyphProperties>           ("GlyphProperties.dbc"),
+                //DBC.Open<ItemClass>                 ("ItemClass.dbc"),
+                //DBC.Open<ItemPetFood>               ("ItemPetFood.dbc"),
+                //DBC.Open<ItemSet>                   ("ItemSet.dbc"),
+                //DBC.Open<ItemSubClass>              ("ItemSubClass.dbc"),
+                DBC.Open<LFGDungeonGroup>           ("LFGDungeonGroup.dbc"),
+                DBC.Open<LFGDungeons>               ("LFGDungeons.dbc"),
+                //DBC.Open<Map>                       ("Map.dbc"),
+                //DBC.Open<QuestInfo>                 ("QuestInfo.dbc"),
+                //DBC.Open<QuestSort>                 ("QuestSort.dbc"),
+                //DBC.Open<Resistances>               ("Resistances.dbc"),
+                //DBC.Open<SkillLine>                 ("SkillLine.dbc"),
+                //DBC.Open<Spell>                     ("Spell.dbc"),
+                //DBC.Open<SpellIcon>                 ("SpellIcon.dbc"),
+                //DBC.Open<Talent>                    ("Talent.dbc"),
+                //DBC.Open<TalentTab>                 ("TalentTab.dbc"),
+                //DBC.Open<WMOAreaTable>              ("WMOAreaTable.dbc"),
             };
 
             Console.WriteLine("Extracting...");

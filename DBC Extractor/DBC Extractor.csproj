@@ -51,6 +51,7 @@
     <Compile Include="DBC Structure\AchievementCategory.cs" />
     <Compile Include="DBC Structure\AchievementCriteria.cs" />
     <Compile Include="DBC Structure\AreaTable.cs" />
+    <Compile Include="DBC Structure\CharTitles.cs" />
     <Compile Include="DBC Structure\ChrClasses.cs" />
     <Compile Include="DBC Structure\ChrRaces.cs" />
     <Compile Include="DBC Structure\CreatureFamily.cs" />
@@ -60,6 +61,9 @@
     <Compile Include="DBC Structure\ItemClass.cs" />
     <Compile Include="DBC Structure\ItemSet.cs" />
     <Compile Include="DBC Structure\ItemSubClass.cs" />
+    <Compile Include="DBC Structure\LFGDungeonGroup.cs" />
+    <Compile Include="DBC Structure\LFGDungeons.cs" />
+    <Compile Include="DBC Structure\Map.cs" />
     <Compile Include="DBC Structure\QuestInfo.cs" />
     <Compile Include="DBC Structure\QuestSort.cs" />
     <Compile Include="DBC Structure\Resistances.cs" />

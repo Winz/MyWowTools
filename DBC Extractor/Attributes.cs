@@ -47,6 +47,7 @@ namespace DbcExtractor
     public class DBCStringAttribute : Attribute
     {
         public bool Localized { get; private set; }
+
         /// <summary>
         /// Defines that this field is a string so that string will be extracted from DBC file instead of raw integer value.
         /// </summary>

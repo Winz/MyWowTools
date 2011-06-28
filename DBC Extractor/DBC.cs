@@ -22,8 +22,17 @@ namespace DbcExtractor
         {
             Strings[T.Name][id] = str;
         }
+        public static uint CreateString(Type T, string str)
+        {
+            //if (!string.IsNullOrEmpty(GetString(T, )))
+            Strings[T.Name][++MaxStringEntries[T.Name]] = str;
+
+            return MaxStringEntries[T.Name];
+        }
 
         private static Dictionary<string, Dictionary<uint, string>> Strings = new Dictionary<string, Dictionary<uint, string>>();
+        private static Dictionary<string, uint> MaxStringEntries = new Dictionary<string, uint>();
+
         public static DBC Open<T>(string filename)
         {
             DBC dbc = new DBC(Path.Combine(Program.prefix, filename));
@@ -64,12 +73,15 @@ namespace DbcExtractor
         private void Load<T>()
         {
             EntryType = typeof(T);
+            string EntryName = EntryType.Name;
+            uint maxStringEntry = 0;
+
             Dictionary<uint, string> strings = new Dictionary<uint, string>();
             using (BinaryReader reader = new BinaryReader(new FileStream(Filename, FileMode.Open, FileAccess.Read), Encoding.UTF8))
             {
                 // read dbc header
                 DbcHeader header = (DbcHeader)reader.ReadStruct(typeof(DbcHeader));
-                int size = Marshal.SizeOf(typeof(T));
+                int size = Marshal.SizeOf(EntryType);
 
                 if (!header.IsDBC())
                 {
@@ -80,13 +92,13 @@ namespace DbcExtractor
                 if (header.GetEntrySize() != size)
                 {
                     Console.WriteLine("Error in {0} structure: struct size={1}, in dbc={2}",
-                        typeof(T).Name, size, header.GetEntrySize());
+                        EntryName, size, header.GetEntrySize());
                     return;
                 }
 
                 // read dbc data
                 for (int i = 0; i < header.GetEntryCount(); ++i)
-                    Entries.Add(reader.ReadStruct(typeof(T)));
+                    Entries.Add(reader.ReadStruct(EntryType));
 
                 // read dbc strings
                 while (reader.BaseStream.Position != reader.BaseStream.Length)
@@ -94,13 +106,20 @@ namespace DbcExtractor
                     var offset = (uint)(reader.BaseStream.Position - header.GetStringBlockPos());
                     var str = reader.ReadCString();
                     strings.Add(offset, str);
+
+                    if (offset > maxStringEntry)
+                        maxStringEntry = offset;
                 }
             }
 
-            if (Strings.ContainsKey(typeof(T).Name))
-                Strings.Remove(typeof(T).Name);
+            if (Strings.ContainsKey(EntryName))
+                Strings.Remove(EntryName);
 
-            Strings.Add(typeof(T).Name, strings);
+            if (MaxStringEntries.ContainsKey(EntryName))
+                MaxStringEntries.Remove(EntryName);
+
+            MaxStringEntries.Add(EntryName, maxStringEntry);
+            Strings.Add(EntryName, strings);
 
             MethodInfo fixer = EntryType.GetMethod("FixRow");
             if (fixer != null)

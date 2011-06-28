@@ -29,5 +29,22 @@ namespace DbcExtractor
 
             return input.ToLower();
         }
+
+        internal static string Enumize(this string input)
+        {
+            input = input
+                .Replace(" / ", "_")
+                .Replace("'", "")
+                .Trim();
+
+            input = Regex.Replace(input, @"[^a-z0-9_]", "_", RegexOptions.IgnoreCase);
+
+            input = input
+                .Trim('_')
+                .Replace("__", "_")
+                .Replace("__", "_");
+
+            return input;
+        }
     }
 }
