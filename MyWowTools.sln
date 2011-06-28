@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBC Extractor", "DBC Extrac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "opcodefix", "opcodefix\opcodefix.csproj", "{094B2691-7E00-4ED4-B0F1-B65C48EE185F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "opcodemerge", "opcodemerge\opcodemerge.csproj", "{2CAFADC6-9DC1-4CF9-9C1E-B092EBF3F393}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,16 @@ Global
 		{094B2691-7E00-4ED4-B0F1-B65C48EE185F}.Release|Mixed Platforms.Build.0 = Release|x86
 		{094B2691-7E00-4ED4-B0F1-B65C48EE185F}.Release|x86.ActiveCfg = Release|x86
 		{094B2691-7E00-4ED4-B0F1-B65C48EE185F}.Release|x86.Build.0 = Release|x86
+		{2CAFADC6-9DC1-4CF9-9C1E-B092EBF3F393}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{2CAFADC6-9DC1-4CF9-9C1E-B092EBF3F393}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{2CAFADC6-9DC1-4CF9-9C1E-B092EBF3F393}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{2CAFADC6-9DC1-4CF9-9C1E-B092EBF3F393}.Debug|x86.ActiveCfg = Debug|x86
+		{2CAFADC6-9DC1-4CF9-9C1E-B092EBF3F393}.Debug|x86.Build.0 = Debug|x86
+		{2CAFADC6-9DC1-4CF9-9C1E-B092EBF3F393}.Release|Any CPU.ActiveCfg = Release|x86
+		{2CAFADC6-9DC1-4CF9-9C1E-B092EBF3F393}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{2CAFADC6-9DC1-4CF9-9C1E-B092EBF3F393}.Release|Mixed Platforms.Build.0 = Release|x86
+		{2CAFADC6-9DC1-4CF9-9C1E-B092EBF3F393}.Release|x86.ActiveCfg = Release|x86
+		{2CAFADC6-9DC1-4CF9-9C1E-B092EBF3F393}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
