@@ -157,7 +157,7 @@ namespace opcodemerge
 
                 if (theirPair == null)
                 {
-                    theirPair = GetPair(ourOpcodes, ourPair.Item1);
+                    theirPair = GetPair(theirOpcodes, ourPair.Item1);
                     if (theirPair != null)
                         Console.WriteLine("Opcode {0} value conflict: our {1}, their {2}", theirPair.Item1, ourPair.Item2, theirPair.Item2);
                     else
